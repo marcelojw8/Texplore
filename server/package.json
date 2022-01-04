@@ -1,0 +1,12 @@
+{
+  "name": "firstly",
+  "version": "0.0.1",
+  "description": "Aprendendo sobre Docker, Kubernetes, e AWS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": ["Docker", "Kubernentes", "GitHub", "Git", "Cloud", "AWS"],
+  "author": "Marcelo Jantsch Wille",
+  "license": "ISC"
+}
