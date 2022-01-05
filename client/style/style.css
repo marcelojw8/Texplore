@@ -1,3 +1,8 @@
+@font-face {
+	font-family: Ubuntu;
+	src: url(../assets/Ubuntu-Regular.ttf);
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -9,5 +14,42 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	background: radial-gradient(#00bbff 0%, #0000ff 100%);
+	font-family: Ubuntu;
 }
 
+h1 {
+	position: absolute;
+	top: 30px;
+	left: calc(calc(100vw / 2) - 8vw);
+	color: white;
+	text-decoration: underline;
+}
+
+div {
+	width: 75%;
+	height: 600px;
+	background-color: burlywood;
+	margin-top: 60px;
+	border-radius: 50px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+table {
+	width: 85%;
+	height: 85%;
+	font-size: 1.6em;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+tr {
+	border: 1px solid black;
+}
+
+th, td {
+	border: 1px solid black;
+	text-align: center;
+}
