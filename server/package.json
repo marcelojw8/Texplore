@@ -17,6 +17,8 @@
   "author": "Marcelo Jantsch Wille",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.5"
   }
 }

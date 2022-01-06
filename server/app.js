@@ -2,8 +2,42 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
-const CLUBS_FILE = path.join(__dirname, "../server/clubs.csv")
-const PORT = 3000;
+const { Sequelize, Model, DataTypes } = require('sequelize');
+
+const USER = 'root';
+const HOST = 'localhost';
+const DB = 'db_futebol_brasileiro';
+const PASSWORD = 'dummy_password';
+const PG_PORT = '5432';
+const SERVER_PORT = 3000;
+
+const sequelize = new Sequelize(DB, USER, PASSWORD, {
+	HOST,
+	PG_PORT,
+	dialect: 'postgres',
+	logging: false,
+});
+
+class Clubs extends Model {}
+Clubs.init({
+	name: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		primaryKey: true,
+	},
+	foundation: {
+		type: DataTypes.INTEGER,
+		allowNull: true,
+	},
+	titles: {
+		type: DataTypes.INTEGER,
+		allowNull: true,
+	}
+}, {
+	sequelize,
+	modelName: 'clubs',
+	timestamps: false,
+});
 
 const app = express();
 
@@ -13,11 +47,11 @@ app.get('/', (req, res) => {
 	res.sendFile("index.html");
 });
 
-app.get('/clubs', (req, res) => {
-	var clubs_data = fs.readFileSync(CLUBS_FILE, 'utf-8');
-	res.send(clubs_data);
-})
+app.get('/clubs', async (req, res) => {
+	const clubs = await Clubs.findAll();
+	res.send(clubs);
+});
 
-app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}...`);
-})
+app.listen(SERVER_PORT, () => {
+	console.log(`Server listening on port ${SERVER_PORT}...`);
+});
