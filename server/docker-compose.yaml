@@ -1,0 +1,21 @@
+version: '3'
+services:
+  my_postgres:
+    image: postgres   # Minha imagem de postgres com 'clubs.csv' dentro
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=dummy_password
+    # command: psql -c 'CREATE DATABASE db_futebol_brasileiro'
+    #               -c '\c db_futebol_brasileiro'
+    #               -c 'COPY clubs FROM /clubs.csv DELIMITER \',\' CSV HEADER'
+
+# Após isso precisa:
+# docker cp clubs.csv server_my_postgres_1:/clubs.csv
+# CREATE TABLE clubs (...);
+# COPY clubs FROM 'clubs.csv' ...;
+# TODO: melhor seria criar uma imagem com este arquivo já pronto (Dockerfile)
+# TODO: melhor seria criar um volume, persistindo as tabelas já criadas
+# TODO: melhor seria 'conteinerizar' toda a aplicação e subir na nuvem
+# TODO: melhor seria sincronizar conteiners da aplicação para distribuir carga
