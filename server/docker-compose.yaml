@@ -2,14 +2,22 @@ version: '3'
 services:
   my_postgres:
     image: postgres   # Minha imagem de postgres com 'clubs.csv' dentro
-    ports:
-      - 5432:5432
+    # ports:
+      # - 5432:5432
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=dummy_password
+    networks:
+      - bridge
+    volumes:
+      - pg-volume:/var/lib/postgresql/data
     # command: psql -c 'CREATE DATABASE db_futebol_brasileiro'
     #               -c '\c db_futebol_brasileiro'
     #               -c 'COPY clubs FROM /clubs.csv DELIMITER \',\' CSV HEADER'
+
+volumes:
+  pg-volume:
+    driver: local
 
 # Após isso precisa:
 # docker cp clubs.csv server_my_postgres_1:/clubs.csv

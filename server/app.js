@@ -5,15 +5,15 @@ const fs = require('fs');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const USER = 'root';
-const HOST = 'localhost';
+const HOST = 'my_postgres';            // Assume container na mesma rede bridge
 const DB = 'db_futebol_brasileiro';
 const PASSWORD = 'dummy_password';
 const PG_PORT = '5432';
 const SERVER_PORT = 3000;
 
 const sequelize = new Sequelize(DB, USER, PASSWORD, {
-	HOST,
-	PG_PORT,
+	host: HOST,
+	port: PG_PORT,
 	dialect: 'postgres',
 	logging: false,
 });
